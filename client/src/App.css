@@ -2,13 +2,11 @@
   text-align: center;
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100vh;
 }
 
 
 .App-intro {
-  /*background-color: #282c34;*/
-  background-repeat: no-repeat;
-  background-size: cover;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -18,11 +16,7 @@
   color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.songs {
+  min-height: 100vh;
 }
+
