@@ -30,8 +30,13 @@ class Intro extends Component {
             <div className="App-intro">
                 <h1>It looks like it's {this.getText()}</h1>
                 <Button onClick = {()=>{this.props.history.push('/Login')}}variant="success">Get Songs</Button>{' '}
+                
             </div>
          );
+    }
+
+    componentDidMount(){
+        console.log(this.props.weather);
     }
 }
 

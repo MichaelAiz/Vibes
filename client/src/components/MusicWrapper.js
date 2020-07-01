@@ -6,12 +6,9 @@ const queryString = require('querystring');
 
 class MusicWrapper extends Component {
 
-    constructor(props) {
-        super(props) 
-        this.state = {
+    state = {
             authorized: false,
-            accessToken: null
-        }
+            accessToken: null,
     }
    /* getToken = () => {
         if(window.location.href.includes('?')){
@@ -40,12 +37,14 @@ class MusicWrapper extends Component {
     componentDidMount() {
         const token = this.getToken();
         token ? this.setState({authorized: true, token: token}) : this.setState({authorized: false, token: null});
+        console.log(this.props);
+        
     }
 
     render() { 
         return ( 
             <React.Fragment>
-                {this.state.authorized ? <Songs token = {this.state.token} /> : <Login/>}
+                {this.state.authorized ? <Songs token = {this.state.token} weather = {this.props.weather} time = {this.props.time}/> : <Login/>}
             </React.Fragment>
          );
     }
