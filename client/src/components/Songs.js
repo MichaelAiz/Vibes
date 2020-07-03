@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import Song from "./Song";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import Container from "@material-ui/core/Container";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
+import { withRouter } from 'react-router'
 
 // The Spotify ids of songs that are used as seeds, completely arbitrary and based on my own opinions
-let clearDaySeeds = ["60nZcImufyMA1MKQY3dcCH", "6VojZJpMyuKClbwyilWlQj"]; //Happy - Pharrel Williams, Wouldn't it be Nice - Beach Boys
+let clearDaySeeds = ["60nZcImufyMA1MKQY3dcCH", "6FE2iI43OZnszFLuLtvvmg"]; //Happy - Pharrel Williams, Classic - MKTO
 let clearNightSeeds = [
   "6uSAPAnkFuSaL4f74KtBmD",
   "6uSAPAnkFuSaL4f74KtBmDspotify:track:3lAun9V0YdTlCSIEXPvfsY",
@@ -20,20 +19,11 @@ let snowySeeds = ["2wCPMWR3y4xclijuCcLJv7", "1prYSRBfwPvE3v8jSRZL3Q"]; // Jingle
 class Songs extends Component {
   state = {
     songs: [1, 3, 4, 5],
-    deviceID: undefined
   };
 
   componentDidMount() {
     this.getSongs();
-    axios({
-      method: "get",
-      url: "https://api.spotify.com/v1/me/player/devices",
-      headers: { Authorization: "Bearer " + this.props.token }
-    })
-    .then((res) => console.log(res));
   }
-
-
 
   
 
@@ -42,11 +32,11 @@ class Songs extends Component {
 
     axios({
       method: "get",
-      url: `https://api.spotify.com/v1/recommendations?limit=6&seed_tracks=${seedTracks[0]},${seedTracks[1]}`,
+      url: `https://api.spotify.com/v1/recommendations?limit=6&seed_tracks=${seedTracks[0]},${seedTracks[1]}&popularity=90`,
       headers: { Authorization: "Bearer " + this.props.token }
     })
       .then((res) => this.setState({ songs: res.data.tracks }))
-      .then((res) => console.log(this.state.songs));
+      .catch(err => err.response.status === 401 ? this.props.history.push('/Login') : alert(err)); //catches error when access token expires and redirects to login page 
   };
 
   getSeeds = () => {
@@ -80,7 +70,7 @@ class Songs extends Component {
     return (
       <div>
         <div style={{ textAlign: "center" }}>
-          <h1 className = "song-header">Vibes</h1>
+          <h1 className = "song-header" style={{color:"green", fontSize: "3rem"}}>Vibes</h1>
         </div>
         <Grid container direction="row" justify="center" spacing={3}>
           {this.state.songs.length == 6 ? this.state.songs.map((song) => (
@@ -89,9 +79,10 @@ class Songs extends Component {
             </Grid>
           )) : <h1>Hi</h1>}
         </Grid>
+        <div><Button onClick = {this.getSongs} variant = "success" size = "lg" style = {{margin: "1rem"}}>New Songs</Button></div>
       </div>
     );
   }
 }
 
-export default Songs;
+export default withRouter(Songs);

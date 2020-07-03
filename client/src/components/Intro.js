@@ -25,11 +25,15 @@ class Intro extends Component {
         } 
         return text;
     }
+
+   /* getTextColor = () => {
+        if(this.props.weather.includes('clear')) 
+    }*/
     render() { 
         return ( 
             <div className="App-intro">
-                <h1>It looks like it's {this.getText()}</h1>
-                <Button onClick = {()=>{this.props.history.push('/Login')}}variant="success">Get Songs</Button>{' '}
+                <h1 style = {{color:"green"}}>It looks like it's {this.getText()}</h1>
+                <Button onClick = {()=>{this.props.history.push('/Login')}}variant="success" size="lg">Get Songs</Button>{' '}
                 
             </div>
          );
