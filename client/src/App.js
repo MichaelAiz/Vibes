@@ -25,7 +25,7 @@ class App extends Component {
 
   getWeather = () => {
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${process.env.REACT_APP_WEATHER_API}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${process.env.REACT_APP_WEATHER_API}`
     )
       .then((res) => res.json())
       .then((data) => {
