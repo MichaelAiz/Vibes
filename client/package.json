@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": " https://michaelaizenshtat.github.io/Vibes/"
+  "homepage": " https://michaelaizenshtat.github.io/Vibes/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.10.2",

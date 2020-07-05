@@ -91,10 +91,10 @@ class Songs extends Component {
             <Grid className = "song" item key = {song.id} xs={12} sm={6} lg={4} align="center" style={this.state.songAmount === 6 ? {opacity: "1"} : {opacity: "0"}}>
               <iframe className = "song-card"  onLoad = {this.addSong} src={`https://open.spotify.com/embed/track/${song.id}`} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             </Grid>
-          )) : <div>hi</div>
+          )) : null
         }
         </Grid>
-        <div>{this.state.songAmount === 6 ? <Button onClick = {this.getSongs} variant = "success" size = "lg" style = {{margin: "1rem"}}>New Songs</Button> : <div>hi</div>}</div>
+        <div>{this.state.songAmount === 6 ? <Button onClick = {this.getSongs} variant = "success" size = "lg" style = {{margin: "1rem"}}>New Songs</Button> : null}</div>
       </div>
     );
   }
