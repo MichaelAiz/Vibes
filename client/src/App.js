@@ -11,7 +11,7 @@ import clear from "../src/assets/clear.jpg";
 import cloudy from "../src/assets/cloudy.jpg";
 import clearnight from "../src/assets/clear-night.jpg";
 import cloudynight from "../src/assets/cloudy-night.jpg";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route} from "react-router-dom";
 let location = {}; //defines location object to later store current location
 
 class App extends Component {
@@ -104,14 +104,22 @@ class App extends Component {
   render() {
     return (
       <Router>
+
         <div className="App" style={this.getStyle()}>
-          <Switch>
             <Route
               exact
               path="/"
               render={(props) => (
                 <React.Fragment>
-                  {this.state.weather ? <Intro weather = {this.state.weather}/> : <Loading/>}
+                 {this.state.weather ? <Intro weather = {this.state.weather}/> : <Loading/>}
+                </React.Fragment>
+              )}
+            />
+            <Route
+              path="/:access_token(access_token=.*)"
+              render={(props) => (
+                <React.Fragment>
+                  {this.state.weather && this.state.time ? <MusicWrapper weather = {this.state.weather} time = {this.state.time}/> : <Loading />}
                 </React.Fragment>
               )}
             />
@@ -119,19 +127,10 @@ class App extends Component {
               path="/Login"
               render={(props) => (
                 <React.Fragment>
-                  <Login weather={this.state.weather} />
+                  {this.state.weather ? <Login weather = {this.state.weather}/> : <Loading/>}
                 </React.Fragment>
               )}
             />
-            <Route
-              path="/callback"
-              render={(props) => (
-                <React.Fragment>
-                  {this.state.weather && this.state.time ? <MusicWrapper weather = {this.state.weather} time = {this.state.time}/> : <Loading/>}
-                </React.Fragment>
-              )}
-            />
-          </Switch>
         </div>
       </Router>
     );

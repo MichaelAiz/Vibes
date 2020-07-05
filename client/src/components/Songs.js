@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import Song from "./Song";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
+
+let Spinner = require('react-spinkit');
+
+
 
 // The Spotify ids of songs that are used as seeds, completely arbitrary and based on my own opinions
 let clearDaySeeds = ["60nZcImufyMA1MKQY3dcCH", "6FE2iI43OZnszFLuLtvvmg"]; //Happy - Pharrel Williams, Classic - MKTO
@@ -19,6 +22,7 @@ let snowySeeds = ["2wCPMWR3y4xclijuCcLJv7", "1prYSRBfwPvE3v8jSRZL3Q"]; // Jingle
 class Songs extends Component {
   state = {
     songs: [1, 3, 4, 5],
+    songAmount: 0
   };
 
   componentDidMount() {
@@ -28,6 +32,7 @@ class Songs extends Component {
   
 
   getSongs = () => {
+    this.setState({songAmount : 0})
     let seedTracks = this.getSeeds();
 
     axios({
@@ -65,21 +70,31 @@ class Songs extends Component {
     return seeds;
   };
 
+  addSong = () => {
+    this.setState({songAmount: this.state.songAmount + 1})
+  }
+
+
+  
 
   render() {
     return (
       <div>
-        <div style={{ textAlign: "center" }}>
-          <h1 className = "song-header" style={{color:"green", fontSize: "3rem"}}>Vibes</h1>
+        <div style={this.props.weather.includes("clear") ? {color:"white"} : {color: "green"}}>
+          <h1 className = "song-header" style={{fontSize: "3rem"}}>Vibes</h1>
         </div>
-        <Grid container direction="row" justify="center" spacing={3}>
-          {this.state.songs.length == 6 ? this.state.songs.map((song) => (
-            <Grid item xs={12} sm={6} lg={4} align="center">
-              <Song name = {song.name} image = {song.album.images[0].url} songSRC = {`https://open.spotify.com/embed/track/${song.id}`}/>
+        <div>
+          <Spinner style = {this.state.songAmount === 6 ? {display: "none"}: {visibility: "visible"}} name="line-scale-pulse-out" fadeIn = "none" />
+        </div>
+        <Grid className = "song-grid" container direction="row" justify="center" spacing={3} >
+          {this.state.songs.length === 6 ? this.state.songs.map((song) => (
+            <Grid className = "song" item key = {song.id} xs={12} sm={6} lg={4} align="center" style={this.state.songAmount === 6 ? {opacity: "1"} : {opacity: "0"}}>
+              <iframe className = "song-card"  onLoad = {this.addSong} src={`https://open.spotify.com/embed/track/${song.id}`} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             </Grid>
-          )) : <h1>Hi</h1>}
+          )) : <div>hi</div>
+        }
         </Grid>
-        <div><Button onClick = {this.getSongs} variant = "success" size = "lg" style = {{margin: "1rem"}}>New Songs</Button></div>
+        <div>{this.state.songAmount === 6 ? <Button onClick = {this.getSongs} variant = "success" size = "lg" style = {{margin: "1rem"}}>New Songs</Button> : <div>hi</div>}</div>
       </div>
     );
   }

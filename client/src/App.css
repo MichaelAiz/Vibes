@@ -37,6 +37,14 @@
   min-height: 100vh;
 }
 
+.song{
+  transition: opacity .5s;
+}
+
+.song-grid{
+  transition: opacity .5s;
+}
+
 
 
 .song-card{
@@ -54,8 +62,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  background-image: url("./assets/music-loading.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  
 }
 
