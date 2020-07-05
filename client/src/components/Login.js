@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import Button from 'react-bootstrap/Button';
-const queryString = require('querystring');
+const queryString = require('querystring');git 
 
 // Credentials npm start
 
 
 
 const scope = 'user-read-private user-top-read user-modify-playback-state user-read-playback-state';
-const redirectURI = 'http://localhost:3000//music';
+const redirectURI = 'https://michaelaizenshtat.github.io/Vibes//music';
 const authURL = 'https://accounts.spotify.com/authorize?' + queryString.stringify({
     client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
     response_type: 'token',
