@@ -12,7 +12,7 @@ let Spinner = require('react-spinkit');
 let clearDaySeeds = ["60nZcImufyMA1MKQY3dcCH", "6FE2iI43OZnszFLuLtvvmg"]; //Happy - Pharrel Williams, Classic - MKTO
 let clearNightSeeds = [
   "6uSAPAnkFuSaL4f74KtBmD",
-  "6uSAPAnkFuSaL4f74KtBmDspotify:track:3lAun9V0YdTlCSIEXPvfsY",
+  "3lAun9V0YdTlCSIEXPvfsY",
 ]; // Spirits Of The Moor - Emile Franck, La Vie En Rose - Edith Piaf
 let cloudySeeds = ["62aP9fBQKYKxi7PDXwcUAS", "6vRCKJDtnrJEcyyzIMa0w0"]; //ily (I love you baby) - Surf Mesa, Never Go Back - Dennis Lloyd
 let rainySeeds = ["0JmiBCpWc1IAc0et7Xm7FL", "1HNkqx9Ahdgi1Ixy2xkKkL"]; //Let Her Go - Passenger, Photograph - Ed Sheeran
@@ -21,8 +21,8 @@ let snowySeeds = ["2wCPMWR3y4xclijuCcLJv7", "1prYSRBfwPvE3v8jSRZL3Q"]; // Jingle
 
 class Songs extends Component {
   state = {
-    songs: [1, 3, 4, 5],
-    songAmount: 0
+    songs: [],
+    songAmount: 0 //used to track the number of songs that have been loaded, to make sure they all appear at once
   };
 
   componentDidMount() {
@@ -32,6 +32,7 @@ class Songs extends Component {
   
 
   getSongs = () => {
+    window.scrollTo(0,0);
     this.setState({songAmount : 0})
     let seedTracks = this.getSeeds();
 
@@ -41,10 +42,10 @@ class Songs extends Component {
       headers: { Authorization: "Bearer " + this.props.token }
     })
       .then((res) => this.setState({ songs: res.data.tracks }))
-      .catch(err => err.response.status === 401 ? this.props.history.push('/Login') : alert(err)); //catches error when access token expires and redirects to login page 
+      .catch(err => err.response.status === 400 ? this.props.history.push('/Login') : alert(err)); //catches error when access token expires and redirects to login page 
   };
 
-  getSeeds = () => {
+  getSeeds = () => { //decides which set of seed tracks to use based on the weather
     let seeds = ["bro"];
     console.log(this.props);
     if (
@@ -70,9 +71,10 @@ class Songs extends Component {
     return seeds;
   };
 
-  addSong = () => {
-    this.setState({songAmount: this.state.songAmount + 1})
+  addSong = () => { //
+    this.setState({songAmount: this.state.songAmount + 1});
   }
+
 
 
   
@@ -80,18 +82,18 @@ class Songs extends Component {
   render() {
     return (
       <div>
-        <div style={this.props.weather.includes("clear") ? {color:"white"} : {color: "green"}}>
+        <div style={this.props.weather.includes("clear") || this.props.weather.includes("rain") ? {color:"white"} : {color: "green"}}>
           <h1 className = "song-header" style={{fontSize: "3rem"}}>Vibes</h1>
         </div>
         <div>
-          <Spinner style = {this.state.songAmount === 6 ? {display: "none"}: {visibility: "visible"}} name="line-scale-pulse-out" fadeIn = "none" />
+          <Spinner style = {this.state.songAmount === 6 ? {display: "none"}: {visibility: "visible"}} name="line-scale-pulse-out" fadeIn = "none" /> 
         </div>
         <Grid className = "song-grid" container direction="row" justify="center" spacing={3} >
-          {this.state.songs.length === 6 ? this.state.songs.map((song) => (
-            <Grid className = "song" item key = {song.id} xs={12} sm={6} lg={4} align="center" style={this.state.songAmount === 6 ? {opacity: "1"} : {opacity: "0"}}>
+          {this.state.songs.length === 6 ? this.state.songs.map((song) => ( //only starts to load iframes when all songs have been added to the array 
+            <Grid className = "song" item key = {song.id} xs={12} sm={6} lg={4} align="center" style={this.state.songAmount === 6 ? {opacity: "1"} : {opacity: "0"}}> 
               <iframe className = "song-card"  onLoad = {this.addSong} src={`https://open.spotify.com/embed/track/${song.id}`} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             </Grid>
-          )) : null
+          )) : null //iframes stay hidden until all of them have been loaded fo better user experience
         }
         </Grid>
         <div>{this.state.songAmount === 6 ? <Button onClick = {this.getSongs} variant = "success" size = "lg" style = {{margin: "1rem"}}>New Songs</Button> : null}</div>

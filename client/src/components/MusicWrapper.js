@@ -3,6 +3,7 @@ import Login from "./Login";
 import Songs from "./Songs";
 const queryString = require('querystring');
 
+// This component is used to extract the access token from the callback uri
 
 class MusicWrapper extends Component {
     state = {

@@ -31,7 +31,7 @@ class Intro extends Component {
     render() { 
         return ( 
             <div className="App-intro">
-                <h1 style = {this.props.weather.includes("clear") ? {color:"white"} : {color: "green"}}>It looks like it's {this.getText()}</h1>
+                <h1 style = {this.props.weather.includes("clear") || this.props.weather.includes("rain") ? {color:"white"} : {color: "green"}}>It looks like it's {this.getText()}</h1>
                 <Button onClick = {()=>{this.props.history.push('/Login')}}variant="success" size="lg">Get Songs</Button>{' '}
                 
             </div>
