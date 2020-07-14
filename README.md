@@ -10,7 +10,7 @@ Navigation of the app
 
 The app changes backgrounds based on the weather, text colour changes between white and green accordingly
 
-![ClearSky Demo](demo/demoNight.JPG)
+![Rainy Demo](demo/demo-rain.JPG) ![Rainy Demo](demo/demo-cloudy.JPG) 
 
 Shows a page asking for location permissions if they are denied
 
