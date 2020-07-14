@@ -10,6 +10,8 @@ Navigation of the app
 
 The app changes backgrounds based on the weather, text colour changes between white and green accordingly
 
+![ClearSky Demo](demo/demoClear.jpg)
+
 Shows a page asking for location permissions if they are denied
 
 
