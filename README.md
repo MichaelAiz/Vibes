@@ -10,7 +10,7 @@ Navigation of the app
 
 The app changes backgrounds based on the weather, text colour changes between white and green accordingly.
 
-![Rainy Demo](demo/demo-rain.JPG) ![Cloudy Demo](demo/demo-cloudy.JPG) ![Night Demo](demo/demo-clearNight.JPG)
+![Rainy Demo](demo/demo-rain.JPG) ![Cloudy Demo](demo/demo-cloudy.JPG)
 
 
 ## Deployment
