@@ -19,7 +19,7 @@ class Login extends Component {
     state = {  }
     render() { 
         return ( <div className = "login">
-            <h1 style = {this.props.weather.includes("clear") || this.props.weather.includes("rain") ? {color:"white"} : {color: "green"}}>You'll Need To Sign In With Spotify</h1> 
+            <h1 style = {this.props.weather.includes("clear") || this.props.weather.includes("cloud") || this.props.weather.includes("thunderstorm") ? {color:"white"} : {color: "green"}}>You'll Need To Sign In With Spotify</h1> 
             <a href={authURL}><Button variant = "success" size = "lg">Sign In</Button></a>
         </div> ); //text colour changes bsed on weather because different background images work better with different colours
     }

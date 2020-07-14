@@ -14,7 +14,8 @@ let clearNightSeeds = [
   "6uSAPAnkFuSaL4f74KtBmD",
   "3lAun9V0YdTlCSIEXPvfsY",
 ]; // Spirits Of The Moor - Emile Franck, La Vie En Rose - Edith Piaf
-let cloudySeeds = ["62aP9fBQKYKxi7PDXwcUAS", "6vRCKJDtnrJEcyyzIMa0w0"]; //ily (I love you baby) - Surf Mesa, Never Go Back - Dennis Lloyd
+//let cloudySeeds = ["62aP9fBQKYKxi7PDXwcUAS", "6vRCKJDtnrJEcyyzIMa0w0"]; //ily (I love you baby) - Surf Mesa, Never Go Back - Dennis Lloyd
+let cloudySeeds = ["0JmiBCpWc1IAc0et7Xm7FL", "1HNkqx9Ahdgi1Ixy2xkKkL"]; 
 let rainySeeds = ["0JmiBCpWc1IAc0et7Xm7FL", "1HNkqx9Ahdgi1Ixy2xkKkL"]; //Let Her Go - Passenger, Photograph - Ed Sheeran
 let stormSeeds = ["0aOluBqXYd0rFSCsgDyAWX", "3z8ypl55NHugzc6EDVVFdF"]; //Take Me To Church - Hozier, I Of The Storm - Of Monsters and Men
 let snowySeeds = ["2wCPMWR3y4xclijuCcLJv7", "1prYSRBfwPvE3v8jSRZL3Q"]; // Jingle Bell Rock - Bobby Helms, Let it Snow - Dean Martin
@@ -82,7 +83,7 @@ class Songs extends Component {
   render() {
     return (
       <div>
-        <div style={this.props.weather.includes("clear") || this.props.weather.includes("rain") ? {color:"white"} : {color: "green"}}>
+        <div style={this.props.weather.includes("clear") || this.props.weather.includes("rain")  || this.props.weather.includes("cloud") ? {color:"white"} : {color: "green"}}>
           <h1 className = "song-header" style={{fontSize: "3rem"}}>Vibes</h1>
         </div>
         <div>
@@ -99,7 +100,7 @@ class Songs extends Component {
         <div>{this.state.songAmount === 6 ? <Button onClick = {this.getSongs} variant = "success" size = "lg" style = {{margin: "1rem"}}>New Songs</Button> : null}</div>
       </div>
     );
-  }
+ }
 }
 
 export default withRouter(Songs);
