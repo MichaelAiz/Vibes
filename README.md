@@ -8,13 +8,9 @@ Navigation of the app
 
 ![Main App](demo/MainDemo.gif)
 
-The app changes backgrounds based on the weather, text colour changes between white and green accordingly
+The app changes backgrounds based on the weather, text colour changes between white and green accordingly.
 
-![Rainy Demo](demo/demo-rain.JPG) ![Rainy Demo](demo/demo-cloudy.JPG) 
-
-Shows a page asking for location permissions if they are denied
-
-
+![Rainy Demo](demo/demo-rain.JPG) ![Rainy Demo](demo/demo-cloudy.JPG) ![Rainy Demo](demo/demo-night.JPG)
 
 
 ## Deployment
