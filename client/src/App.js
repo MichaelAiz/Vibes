@@ -10,6 +10,7 @@ import clear from "../src/assets/clear.jpg";
 import cloudy from "../src/assets/cloudy.jpg";
 import clearnight from "../src/assets/clear-night.jpg";
 import cloudynight from "../src/assets/cloudy-night.jpg";
+import snowy from "../src/assets/snowy.jpg";
 import { HashRouter as Router, Route } from "react-router-dom"; //Hash Router is used instead of Browser Router to allow for app to be hosted on Github Pages
 var Spinner = require('react-spinkit');
 let location = {}; //defines location object to later store current location
@@ -82,9 +83,13 @@ class App extends Component {
       this.state.weather.includes("drizzle")
     ) {
       image = `url('${rainy}')`;
+    }  else if (
+      this.state.weather.includes("snow")
+    ) {
+      image = `url('${snowy}')`;
     }
     return {
-      backgroundImage: `url('${clearnight}')`,
+      backgroundImage: image,
     };
   };
 

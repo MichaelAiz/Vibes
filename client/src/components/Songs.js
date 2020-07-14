@@ -68,6 +68,10 @@ class Songs extends Component {
       seeds = rainySeeds;
     } else if (this.props.weather.includes("thunderstorm")) {
       seeds = stormSeeds;
+    } else if (this.props.weather.includes("snow")) {
+      seeds = snowySeeds;
+    } else {
+      seeds = clearDaySeeds;
     }
     return seeds;
   };
