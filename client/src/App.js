@@ -84,7 +84,7 @@ class App extends Component {
       image = `url('${rainy}')`;
     }
     return {
-      backgroundImage: image,
+      backgroundImage: `url('${clearnight}')`,
     };
   };
 
