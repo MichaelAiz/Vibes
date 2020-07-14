@@ -83,7 +83,7 @@ class Songs extends Component {
   render() {
     return (
       <div>
-        <div style={this.props.weather.includes("clear") || this.props.weather.includes("rain")  || this.props.weather.includes("cloud") ? {color:"white"} : {color: "green"}}>
+        <div style={this.props.weather.includes("clear") || this.props.weather.includes("rain")  || this.props.weather.includes("thunderstorm") ? {color:"white"} : {color: "green"}}>
           <h1 className = "song-header" style={{fontSize: "3rem"}}>Vibes</h1>
         </div>
         <div>
