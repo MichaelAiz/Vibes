@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import { withRouter } from 'react-router'
 
-
-
 class Intro extends Component {
     state = {
     }
@@ -28,7 +26,6 @@ class Intro extends Component {
         }
         return text;
     }
-
     render() { 
         return ( 
             <div className="App-intro">

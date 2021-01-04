@@ -3,10 +3,9 @@ import Button from 'react-bootstrap/Button';
 const queryString = require('querystring');
 
 // Credentials 
-
 const scope = 'user-read-private user-top-read user-modify-playback-state user-read-playback-state';
-//const redirectURI = 'https://michaelaizenshtat.github.io/Vibes/#/callback';
-const redirectURI = 'http://localhost:3000/callback';
+const redirectURI = 'https://michaelaiz.github.io/Vibes/#/callback';
+//const redirectURI = 'http://localhost:3000/callback';
 const authURL = 'https://accounts.spotify.com/authorize?' + queryString.stringify({
     client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
     response_type: 'token',
