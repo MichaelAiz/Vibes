@@ -13,5 +13,4 @@ The app changes backgrounds based on the weather, text colour changes between wh
 ![Rainy Demo](demo/demo-rain.JPG) ![Cloudy Demo](demo/demo-cloudy.JPG)
 
 
-## Deployment
 
